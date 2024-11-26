@@ -3,6 +3,7 @@ package com.lljk.fitfinder.service;
 import com.lljk.fitfinder.entity.Facility;
 import com.lljk.fitfinder.repository.FacilityRepository;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 import org.slf4j.Logger;
@@ -21,6 +22,10 @@ public class FacilityService {
 
     public FacilityService(FacilityRepository facilityRepository) {
         this.facilityRepository = facilityRepository;
+    }
+
+    public List<Facility> recommendFacilities(Double latitude, Double longitude, String activity) {
+        return facilityRepository.findFacilitiesByCriteria(latitude, latitude, longitude, longitude, activity);
     }
 
     @Transactional
